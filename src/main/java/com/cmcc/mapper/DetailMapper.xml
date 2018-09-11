@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cmcc.mapper.DetailMapper">
+	 <resultMap type="com.cmcc.bean.Detail" id="DetailMap">
+	 	<id property="id" column="id" />
+	 	<result property="openId" column="open_id" />
+	 	<result property="accessToken" column="access_token"/>
+	 	<result property="refresh_token" column="refresh_token"/>
+	 	<result property="expire_in" column="expire_in"/>
+	 	<result property="scope" column="scope"/>
+	 </resultMap>
+	
+	  <select id="selectById" resultMap="DetailMap" parameterType="int">
+	  	select * from detail where id = #{id}
+	  </select>
+	  
+	
+	 <insert id="insert" parameterType="com.cmcc.bean.Detail">
+	 	insert into detail(open_id,access_token,refresh_token,expire_in,scope) values(#{openId},#{accessToken},#{refresh_token},#{expire_in},#{scope})
+	 </insert>
+	
+	<update id="update" parameterType="com.cmcc.bean.Detail">
+		update detail set  open_id =#{openId},access_token =#{accessToken},refresh_token =#{refresh_token},expire_in =#{expire_in},scope =#{scope} where id=#{id}
+	</update>
+	
+	</mapper>

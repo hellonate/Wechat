@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmcc.mapper.UserMapper">
+	 <resultMap type="com.cmcc.bean.User" id="UserMap">
+	 	<id property="id" column="id" />
+	 	<result property="openId" column="open_id"/>
+	 	<result property="nickName" column="nick_name"/>
+	 	<result property="sex" column="sex"/>
+	 	<result property="province" column="province"/>
+	 	<result property="city" column="city"/>
+	 	<result property="country" column="country"/>
+	 </resultMap>
+	
+	  <select id="selectById" resultMap="UserMap" parameterType="int">
+	  	select * from user where id = #{id}
+	  </select>
+	  
+	
+	 <insert id="insert" parameterType="com.cmcc.bean.User" useGeneratedKeys="true">
+	 	insert into user(open_id,nick_name,sex,province,city,country) values(#{openId},#{nickName},#{sex},#{province},#{city},#{country})
+	 </insert>
+	
+	<update id="update" parameterType="com.cmcc.bean.User">
+		update user set  open_id =#{openId},nick_name =#{nickName},sex =#{sex},province =#{province},city =#{country},city =#{city} where id=#{id}
+	</update>
+
+
+
+
+
+</mapper>

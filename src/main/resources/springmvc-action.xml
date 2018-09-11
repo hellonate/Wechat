@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           http://www.springframework.org/schema/mvc 
+						http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd 
+            http://www.springframework.org/schema/tx 
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    		 http://www.springframework.org/schema/aop 
+     		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+           ">
+           
+    	  
+           <mvc:resources location="/img/" mapping="/img/**"/>
+           <mvc:resources location="css/" mapping="/css/**"/>
+           <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+           <!-- js  video  mp3   upload/ -->
+           <mvc:annotation-driven  content-negotiation-manager="contentNegotiationManager" >
+           </mvc:annotation-driven>
+            <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">   
+		    <property name="favorPathExtension" value="false" />  
+		    <property name="favorParameter" value="false" />   
+		    <property name="ignoreAcceptHeader" value="false" />   
+		    <property name="mediaTypes" >   
+        	<value>  
+            atom=application/atom+xml  
+            html=text/html  
+            json=application/json  
+            *=*/*  
+        	</value>   
+    		</property>  
+			</bean>  
+			
+			 
+    
+    
+           
+          <!-- <mvc:interceptors>
+           		<mvc:interceptor>        			
+           			<mvc:mapping path="/"/>
+           			 <mvc:mapping path="/ItemBack/**" /> 
+           			 <mvc:mapping path="/ItemBackCat/**" /> 
+           			<bean class="com.shengluo.interceptor.MyInterceptor"></bean>
+           			</mvc:interceptor>
+             </mvc:interceptors> -->
+          
+          <!-- 注解 -->
+          <context:component-scan base-package="com.cmcc.controller"></context:component-scan>
+          <context:component-scan base-package="com.cmcc.service"></context:component-scan>
+          <context:component-scan base-package="com.cmcc.service.impl"></context:component-scan>
+          <context:component-scan base-package="com.cmcc.utils"></context:component-scan>
+          
+          <!-- 内部资源视图解析器 -->
+          <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+          	<property name="prefix" value="/WEB-INF/"></property>
+          	<property name="suffix" value=".jsp"></property>
+          </bean> 
+          
+          
+          
+        
+           
+</beans>
